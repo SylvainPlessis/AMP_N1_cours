@@ -1,0 +1,13 @@
+.gitignore
+docs
+*.aux
+*.log
+*.swp
+*.bz2
+*.nav
+*.out
+*.snm
+*.toc
+*fromtex
+*figs
+202*
