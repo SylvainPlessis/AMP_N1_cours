@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage[paperwidth=7cm,paperheight=7.35cm,left=0pt,right=0pt,top=0pt,bottom=0pt]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
+\pagestyle{empty}
+\begin{document}
+\centering%
+\tikzset{
+arr/.style={-stealth, red, line width=#1 pt}
+}
+\begin{tikzpicture}[y=3mm,every node/.append style={text opacity=1}]
+\clip(-2,3) -- ++(7,0) -- ++(0,-23.5) -- ++(-7,0) -- cycle;
+\fill[draw=none,bottom color=cyan!60, top color=white] decorate[decoration=snake, segment length=20]{(-2,0) -- ++(8,0)} -- ++(0,-21) -- ++(-8,0) -- cycle;
+\draw[arr=1] (-1,-10) -- ++(0,-2.5);
+%\draw[arr=4] (-1,-10) -- ++(0,5);
+%
+%\draw[arr=4] (1.5,-10) -- ++(0,5);
+\draw[arr=4] (1.5,-10) -- ++(0,-5);
+%
+\draw[arr=8] (4,-10) -- ++(0,-10);
+%\draw[arr=4] (4,-10) -- ++(0,5);
+\fill[opacity=0.4,ball color=white] (-1,-10)  circle (15pt) node{500 g};
+\fill[opacity=0.8,ball color=white] (1.5,-10) circle (15pt) node{1 kg};;
+\fill[opacity=1.0,ball color=white] (4,-10)   circle (15pt) node{2 kg};
+\end{tikzpicture}%
+\end{document}

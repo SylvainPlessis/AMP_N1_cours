@@ -1,0 +1,153 @@
+\makeatletter
+\setbeamertemplate{footline}
+{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle\nobreak\hfill\insertframenumber{} / \inserttotalframenumber\usebeamercolor[fg]{page number in head/foot}\usebeamerfont{page number in head/foot}\usebeamertemplate{page number in head/foot}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\graphicspath{{./figs/}}
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+\setbeamercovered{dynamic}
+\beamertemplatetransparentcovered
+\newlength{\@minione}
+\newlength{\@minitwo}
+\newcommand{\juxt}[3][0.48]{%
+\setlength{\@minione}{#1\textwidth}%
+\setlength{\@minitwo}{0.96\textwidth - \@minione}%
+\begin{minipage}[c][5cm][c]{\@minione}
+\raggedright#2
+\end{minipage}\hfill
+\begin{minipage}[c][5cm][c]{\@minitwo}
+\raggedright#3
+\end{minipage}%
+}
+\newlength\p@length
+\newcommand{\danger}[1]{%
+\begin{tikzpicture}[baseline=(X.center)]
+\path[use as bounding box] (-0.4,-0.4) rectangle ++(0.8,0.8);
+\node[draw=red,very thick,text=red,regular polygon, regular polygon sides=3,rounded corners, inner sep=1pt,font=\bf] (X) at (0,0) {!};%
+\end{tikzpicture}
+\setlength{\p@length}{\textwidth}%
+\addtolength{\p@length}{-1cm}%
+\hfill\parbox{\p@length}{\raggedright#1}}
+
+\newcommand{\includefullheightgraphics}[1]{%
+\global\beamer@shrinktrue%
+\gdef\beamer@shrinkframebox{%
+  \setbox\beamer@framebox=\vbox to 0.96\beamer@frametextheight{%
+     \centering%
+     \includegraphics[height=0.96\beamer@frametextheight]{#1}%
+ }%
+}}
+
+%%%%
+\newcommand{\Emph}[1]{\textcolor{red}{\textbf{#1}}}
+\newcommand{\EMPH}[1]{\textcolor{green!60!black}{\textbf{\textit{#1}}}}
+\newcommand{\shadowbox}[1]{\raisebox{0pt}[0pt]{\makebox[0pt][c]{#1}}}
+%%%%
+\newcommand{\logoFFESSM}{%
+\includegraphics[height=5mm]{logoFFESSM}%
+}
+%%%%
+\newcommand{\@ver}[1]{%
+\makebox(0,0){\vbox{#1}}%
+}
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+\newcommand{\@list@plon}[3][\relax]{%
+\def\@tmp{#1}
+\ifx#1\relax%
+  \def\@tmp{\null}
+\fi
+\def\@ttmp{#3}
+\ifx#3\relax%
+  \def\@ttmp{\null}
+\fi
+\begin{tikzpicture}[every node/.style={text width=5.3cm}]
+\node (one) at (0,0) {#2};
+\node[anchor=north west] (two) at (one.south west) {\@tmp};
+\node[anchor=north west] (three) at (two.south west) {\@ttmp};
+\coordinate (po)  at ([xshift=-5pt,yshift=1pt]one.west);
+\coordinate (pt)  at ([yshift=-13pt]po);
+\coordinate (pth) at ([yshift=-13pt]pt);
+\draw[-stealth] (po) .. controls ++(-2pt,-1pt) .. (one.west);
+\ifx#1\relax%
+\else
+\draw[-stealth] (pt) .. controls ++(-2pt,-1pt) .. ([yshift=-13pt]one.west);
+\fi
+\ifx#3\relax%
+\else
+\draw[-stealth] (pth) .. controls ++(-2pt,-1pt) .. ([yshift=-26pt]one.west);
+\fi
+\begin{pgfonlayer}{background}
+\node[fit=(po) (one) (two) (three), fill=cyan, rounded corners=5pt] {};
+\end{pgfonlayer}
+\end{tikzpicture}
+}
+%%% width = 5.9cm
+\newcommand{\@licence}{%
+\@list@plon[Valable du 1~septembre au 31~décembre de l'année suivante]{Responsabilité civile}{\relax}\\\medskip
+\rule{1.985cm}{0pt}\frame{\includegraphics[height=3.752cm]{Licence}}
+}
+\newcommand{\@carte}{%
+\@list@plon[équivalence CMAS au dos]{Preuve du niveau (et donc prérogatives)}{\relax}\\\smallskip
+\rule{1.325cm}{0pt}\frame{\includegraphics[width=3cm]{carte_niveau_recto}}\\\smallskip
+\rule{1.325cm}{0pt}\frame{\includegraphics[width=3cm]{carte_niveau_verso}}
+}
+\newcommand{\@CACI}{%
+\@list@plon[valable 1 an (accident ou maladie~!)]{Obligatoire}{Préférer un médecin fédéral}\\\smallskip
+\rule{1.6295cm}{0pt}\frame{\includegraphics[height=3.752cm]{CACI}}
+}
+\newcommand{\@carnet}{%
+\@list@plon[Existe sous forme numérique\\\scriptsize\url{https://carnet.ffessm.fr/bienvenue}]{Expérience}{\relax}\\\smallskip
+\rule{1.074cm}{0pt}\includegraphics[height=3.752cm]{carnet_plongee}
+}
+\def\make@over#1{
+\expandafter\gdef\csname#1\endcsname##1{\visible<##1>{\@ver{\csname @#1\endcsname}}}
+}
+\make@over{licence}
+\make@over{carte}
+\make@over{CACI}
+\make@over{carnet}
+
+\newcommand{\photo@text}[1]{%
+\transparent{0.5}{\colorbox{white}{\transparent{1}#1}}
+}
+\newcommand<>{\photo}[3][\relax]{%
+\includegraphics#4[width=#3]{#2}%
+\ifx#1\relax\else%
+  \only#4{\makebox[0pt][c]{\raisebox{5pt}{\photo@text{#1}\rule{#3}{0pt}}}}%
+\fi%
+}
+\newcommand{\zap}[1]{}
+
+\newcommand{\asubsection}[1]{%
+\begin{frame}{}
+\begin{block}{}
+\begin{center}
+\large #1
+\end{center}
+\end{block}
+\end{frame}}
+
+\newcommand{\papieren}[1]{%
+\makebox[0pt]{\includegraphics[width=0.6#1]{CACI}}%
+\makebox[0pt]{\raisebox{0.4#1}{\rotatebox{-20}{\includegraphics[width=0.2#1]{Licence}}}}%
+\makebox[0pt]{\raisebox{0.1#1}{\rotatebox{10}{\includegraphics[height=0.2#1]{N2_recto}}}}%
+}
+
+\makeatother

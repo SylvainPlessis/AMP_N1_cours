@@ -1,0 +1,110 @@
+\documentclass{beamer}
+\usetheme{shadow}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{graphicx,amsmath,calc,transparent}
+\usepackage[version=4]{mhchem}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,decorations.pathmorphing,fit}
+\input{preamble}
+\hypersetup{
+pdftitle={Théorie N1},
+pdfsubject={Cours N1 2024/2025},
+pdfauthor={Sylvain Plessis},
+pdfkeywords={FFESSM niveau 1}
+}
+\begin{document}
+
+\title{Théorie N1}
+\author[S.~Plessis]{Sylvain Plessis~--~E2}
+\newcounter{prevyear}
+\setcounter{prevyear}{\the\year}
+\addtocounter{prevyear}{-1}
+\newcounter{nextyear}
+\setcounter{nextyear}{\the\year}
+\addtocounter{nextyear}{1}
+\date{\theprevyear\ -- \the\year}
+\institute{\includegraphics{logoFFESSM}\hspace{1cm}\includegraphics[width=1.5cm]{logoAMP}}
+\logo{\includegraphics[width=1cm]{logoAMP}}
+
+\begin{frame}
+\addtocounter{framenumber}{-1}
+\thispagestyle{empty}
+\titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%
+%%%
+%%% intro
+%%%
+%%%%%%%%%%%%%%%%%%
+\addtocounter{section}{-1}
+\section*{Pourquoi?}
+\begin{frame}{Pourquoi faire de la théorie?}
+\begin{block}{Une bêbête terrestre sous l'eau}
+\og environnement spécifique\fg\ $\Rightarrow$ environnement risqué
+\end{block}
+\visible<2->{%
+\begin{block}{On diminue les risques avec}
+\begin{itemize}[<+(1)->]
+\item la technologie (matériel),
+\item la technique (gestes techniques, attitude).
+\end{itemize}
+\end{block}
+}
+\visible<4->{$\Rightarrow$ comprendre, connaître et savoir-faire pour évoluer \EMPH{en toute sécurité.}}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%
+%%%
+%%% end intro
+%%%
+%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section{Réglementation}
+\input{reglementation}
+
+\section{Prévention}
+\subsection{La pression}
+\asubsection{La pression}
+\input{baro}
+
+\subsection{La dissolution des gaz}
+\asubsection{La dissolution des gaz}
+\input{physio}
+
+\subsection{La stabilisation}
+\asubsection{La stabilisation}
+\input{stabilisation}
+
+\subsection{L'essouflement}
+\asubsection{L'essouflement}
+\input{essouflement}
+
+\subsection{La température}
+\asubsection{La température}
+\input{temperature}
+
+\subsection{La narcose}
+\asubsection{La narcose}
+\input{narcose}
+
+\section{Déroulement d'une plongée}
+\input{plongee}
+
+\section{Respect de l'environnement}
+\input{poisson}
+
+\begin{frame}{Merci de votre attention!}
+Cours N1 en ligne de la fédération:\\\url{https://formation.ffessm.fr/cours/cours-sequence/plonger-avec-la-ffessm-niveau-1}
+\begin{center}
+\Huge Des questions?
+\end{center}
+\end{frame}
+
+\end{document}
