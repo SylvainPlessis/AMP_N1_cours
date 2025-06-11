@@ -1,6 +1,6 @@
 vectorsources := $(shell find rawfigs/ -maxdepth 1 -name '*.dia' -o -name '*.eps' -o -name '*.m' -o -name '*.pdf' -o -name '*.ps' -o -name '*.py' -o -name '*.svg' 2>/dev/null)
 rastersources := $(shell find rawfigs/ -maxdepth 1 -name '*.gif' -o -name '*.png' -not -name bonheur.png 2>/dev/null)
-readysources  := $(shell find rawfigs/ -maxdepth 1 -name '*.jpg' -o -name '*.pdf' -o -name '*mpg' -o -name '*.mpeg' 2>/dev/null)
+readysources  := $(shell find rawfigs/ -maxdepth 1 -name '*.jpg' -o -name '*.jpeg' -o -name '*.pdf' -o -name '*mpg' -o -name '*.mpeg' 2>/dev/null)
 texsource     := $(wildcard abstract.tex main.tex paper.tex poster.tex proposal.tex report.tex talk.tex)
 bonheur       := rawfigs/bonheur.png
 
@@ -154,3 +154,7 @@ figs/%.jpg: rawfigs/%.jpg
 	@mkdir -p $(dir $@)
 	@gm convert -geometry "1920x1100>" $? $@
 
+figs/%.jpeg: rawfigs/%.jpeg
+	@echo "$@ <- $?"
+	@mkdir -p $(dir $@)
+	@gm convert -geometry "1920x1100>" $? $@
