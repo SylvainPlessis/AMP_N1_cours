@@ -8,6 +8,6 @@ docs
 *.out
 *.snm
 *.toc
-*fromtex
-*figs
+fromtex
+figs
 202*
