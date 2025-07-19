@@ -127,7 +127,7 @@ figs/%.pdf: rawfigs/%.svg
 figs/%.jpg: rawfigs/%.png
 	@echo "$@ <- $?"
 	@mkdir -p $(dir $@)
-	@gm convert -channel opacity -fill white $? - | gm composite -compose over $? - -geometry "1920x1100>" $@
+	@gm convert -channel opacity -fill white $? - | gm composite -compose over $? - - | gm convert -geometry "1920x1100>" - $@
 
 figs/%.jpg: rawfigs/%.gif
 	@echo "$@ <- $?"
