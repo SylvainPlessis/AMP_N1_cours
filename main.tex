@@ -3,10 +3,11 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
+\usepackage[useregional]{datetime2}
 \usepackage{graphicx,amsmath,calc,transparent,twemojis}
 \usepackage[version=4]{mhchem}
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric,decorations.pathmorphing,fit}
+\usetikzlibrary{shapes.geometric,decorations.pathmorphing,fit,backgrounds}
 \usepackage{pdfpages}
 \input{preamble}
 \hypersetup{
@@ -17,16 +18,17 @@ pdfkeywords={FFESSM niveau 1}
 }
 \begin{document}
 \setlength{\twemojiDefaultHeight}{15pt}
+\setdatelimite{14}{06}{2025}
 
 \title{Théorie N1}
 \author[S.~Plessis]{Sylvain Plessis~--~E2}
-\newcounter{prevyear}
-\setcounter{prevyear}{\the\year}
-\addtocounter{prevyear}{-1}
-\newcounter{nextyear}
-\setcounter{nextyear}{\the\year}
-\addtocounter{nextyear}{1}
-\date{\theprevyear\ -- \the\year}
+\newcounter{startyear}
+\setcounter{startyear}{\the\year}
+\ifnum\month<9\addtocounter{startyear}{-1}\fi
+\newcounter{endyear}
+\setcounter{endyear}{\the\year}
+\ifnum\month>9\addtocounter{endyear}{1}\fi
+\date{\thestartyear\ -- \theendyear}
 \institute{\includegraphics{logoFFESSM}\hspace{1cm}\includegraphics[width=1.5cm]{logoAMP}}
 \logo{\includegraphics[width=1cm]{logoAMP}}
 

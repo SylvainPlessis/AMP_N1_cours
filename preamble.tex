@@ -56,7 +56,7 @@
 
 %%%%
 \newcommand{\Emph}[1]{\textcolor{red}{\textbf{#1}}}
-\newcommand{\EMPH}[1]{\textcolor{green!60!black}{\textbf{\textit{#1}}}}
+\newcommand{\EMPH}[1]{\textcolor{green!60!black}{\textbf{\textit{\MakeUppercase{#1}}}}}
 \newcommand{\shadowbox}[1]{\raisebox{0pt}[0pt]{\makebox[0pt][c]{#1}}}
 %%%%
 \newcommand{\logoFFESSM}{%
@@ -148,5 +148,50 @@
 \makebox[0pt]{\includegraphics[width=0.6#1]{CACI}}%
 \makebox[0pt]{\raisebox{0.4#1}{\rotatebox{-20}{\includegraphics[width=0.2#1]{Licence}}}}%
 \makebox[0pt]{\raisebox{0.1#1}{\rotatebox{10}{\includegraphics[height=0.2#1]{N2_recto}}}}%
+}
+
+\newcommand{\warningsign}{%
+\begin{tikzpicture}[baseline={(U.base)},tight background]
+\coordinate (a) at (0,0);
+\coordinate (b) at (0:1.5);
+\coordinate (c) at (60:1.5);
+\draw[rounded corners,red,ultra thick,fill=orange!20] (a) -- (b) -- (c) -- cycle;
+\node[font=\bf\Huge] (U) at (barycentric cs:a=1,b=1,c=1) {!};
+\end{tikzpicture}}
+
+\newcommand{\blap}[1]{\vbox to\z@{#1\vss}}
+\newcommand{\squash}[1]{\blap{\rlap{#1}}}
+
+\newcommand{\check@date}[3]{
+\newcount\date@count
+\newcount\today@count
+\date@count=#1
+\today@count=\day
+\newcount\tmp@count
+\tmp@count=#2
+\multiply\tmp@count by 100
+\advance \date@count by \tmp@count
+\tmp@count=\month
+\multiply\tmp@count by 100
+\advance \today@count by \tmp@count
+\tmp@count=#3
+\multiply\tmp@count by 10000
+\advance \date@count by \tmp@count
+\tmp@count=\year
+\multiply\tmp@count by 10000
+\advance \today@count by \tmp@count
+\ifnum\date@count<\today@count\obsoletetrue\else\obsoletefalse\fi
+}
+\newif\ifobsolete
+\newcommand{\bad@date}[1]{\rlap{///////}#1\llap{////}}
+\newcommand{\datelimite}{\textrm{@À voir dans l'agenda AMP@}}
+\newcommand{\setdatelimite}[3]{%
+\check@date{#1}{#2}{#3}%
+%
+\ifobsolete%
+  \renewcommand{\datelimite}{\bad@date{\DTMdisplaydate{#3}{#2}{#1}{-1}}}
+\else%
+  \renewcommand{\datelimite}{\DTMdisplaydate{#3}{#2}{#1}{-1}}
+\fi
 }
 \makeatother

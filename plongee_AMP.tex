@@ -37,16 +37,32 @@
 \end{minipage}
 }%
 \begin{alertblock}<only@4>{Et donc\dots}
-\huge Favoriser un maximum ces sorties pour valider le N1!
-\end{alertblock}
+\Large Favoriser un maximum ces sorties pour valider le N1!
+\end{alertblock}%
+\only<4>{%
+\includegraphics[width=0.48\textwidth]{Mejean}\hfill%
+\includegraphics[width=0.4\textwidth]{Marseille}%
+}%
+%
+\begin{alertblock}<only@5>{Date limite}
+\parshape 3
+0.16\textwidth 0.84\textwidth
+0.16\textwidth 0.84\textwidth
+0pt \textwidth
+\squash{\rule{0pt}{1.5cm}\warningsign}%
+\huge Remise des diplômes le \datelimite\ $\Rightarrow$
+\tracingifs=2
+faire ses plongées techniques \EMPH{au plus tard}
+à cette sortie
+\end{alertblock}%
 \end{frame}
 
-%
-%\begin{frame}{S'incrire/payer}
-%\centering%
-%\includegraphics<1>[height=0.9\textheight]{inscription_formulaire}
-%\includegraphics<2>[width=0.7\textwidth]{inscription_reservation}
-%\end{frame}
-
+\begin{frame}{Inscription}
+\begin{block}{}
+\begin{center}
+S'inscrire à une sortie
+\end{center}
+\end{block}
+\end{frame}
 \includepdf[pages=-]{AMP-Participer_aux_evenements_juin_2025}
 
