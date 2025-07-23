@@ -71,7 +71,7 @@ continuous: all
 
 $(texfinal): $(alldeps)
 	$(MYPDFLATEX) --draftmode $(call texroot,$@) && $(MYPDFLATEX) $(call texroot,$@)
-	if [ "$@" != "$(call texroot,$@).pdf" ]; then mv "$(call texroot,$@).pdf" "$@"; fi
+	if [ "$@" != "$(call texroot,$@).pdf" ]; then mv "$(call texroot,$@).pdf" "pdf/$@"; fi
 
 clean: cleanlatex cleanfigs cleanlatexsrc
 
